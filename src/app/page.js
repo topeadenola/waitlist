@@ -28,7 +28,7 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-[#001C0C] w-screen h-screen md:max-h-screen custom-font">
+    <div className="bg-[#001C0C] w-screen text-white h-screen md:max-h-screen custom-font">
       <div className="flex overflow-auto flex-col-reverse md:flex-row gap-8 md:items-center md:justify-center h-full">
         <div className="flex-1 text-center md:text-right flex-col gap-4 flex md:items-end justify-center items-center md:justify-start">
           <img src="/logo.png" className="h-10" />
