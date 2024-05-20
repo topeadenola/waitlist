@@ -28,14 +28,14 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-[#001C0C] w-full h-screen max-h-screen custom-font">
-      <div className="flex gap-8 items-center justify-center h-full">
-        <div className="flex-1 text-right flex-col gap-4 flex items-end justify-start">
+    <div className="bg-[#001C0C] w-screen h-screen md:max-h-screen custom-font">
+      <div className="flex overflow-auto flex-col-reverse md:flex-row gap-8 md:items-center md:justify-center h-full">
+        <div className="flex-1 text-center md:text-right flex-col gap-4 flex md:items-end justify-center items-center md:justify-start">
           <img src="/logo.png" className="h-10" />
 
           <p className="text-4xl font-light">Join the Waitlist</p>
 
-          <p className="max-w-lg font-light">
+          <p className="max-w-lg font-light px-4 md:px-0">
             Join us on this exciting journey as we revolutionize education and
             nurture imaginations across Africa and the rest of the world.
           </p>
@@ -47,7 +47,7 @@ export default function Home() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Please insert your email here..."
                 required
-                className="focus:outline-none pr-4 py-2 w-72 text-sm bg-[#001C0C]"
+                className="focus:outline-none pr-4 py-2 w-60 md:w-72 text-sm text-white bg-[#001C0C]"
               />
               <button type="submit" className="border-[#305B43] text-[#D0EA50] border-l-2 px-2 py-2">
                 Send
@@ -61,8 +61,8 @@ export default function Home() {
 
         </div>
 
-        <div className="flex-1 h-full flex justify-start items-center">
-          <img src="/heroimg.png" className="h-[50vh]" />
+        <div className="md:flex-1 md:h-full md:items-center my-12 flex md:justify-start justify-center">
+          <img src="/heroimg.png" className="md:h-[50vh] md:w-[50vh] h-[60vw] object-contain" />
         </div>
         <div>
           <img src="" />

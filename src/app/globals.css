@@ -20,14 +20,14 @@
 
 @font-face {
   font-family: 'Trap';
-  src: url('/fonts/Trap-Regular.ttf') format('truetype');
+  src: url('/fonts/Trap-Regular.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Trap';
-  src: url('/fonts/Trap-Bold.ttf') format('truetype');
+  src: url('/fonts/Trap-Bold.otf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
@@ -55,5 +55,5 @@ body {
 
 .custom-font {
   font-family: 'Trap', sans-serif;
-  font-weight: bold;
+  font-weight: regular;
 }
