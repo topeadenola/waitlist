@@ -16,7 +16,27 @@
   }
 }
 
+
+
+@font-face {
+  font-family: 'Trap';
+  src: url('/fonts/Trap-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Trap';
+  src: url('/fonts/Trap-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+
+
+
 body {
+  font-family: 'Trap', sans-serif;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -30,4 +50,10 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+
+.custom-font {
+  font-family: 'Trap', sans-serif;
+  font-weight: bold;
 }
