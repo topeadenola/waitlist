@@ -62,7 +62,7 @@ export default function Home() {
         </div>
 
         <div className="md:flex-1 md:h-full md:items-center mt-24 md:mt-0 flex md:justify-start justify-center items-end">
-          <img src="/heroimg.png" className="md:h-[80vh] md:ml-6 md:w-[80vh] h-[60vw] object-contain" />
+          <img src="/heroimg.png" className="md:h-[50vh] md:ml-6 md:w-[50vh] h-[60vh] object-contain" />
         </div>
         <div>
           <img src="" />
