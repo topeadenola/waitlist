@@ -39,7 +39,7 @@ export default function Home() {
             Join us on this exciting journey as we revolutionize education and
             nurture imaginations across Africa and the rest of the world.
           </p>
-          <div className="border-[#305B43] border-2 rounded-xl w-fit h-fit flex items-center justify-center px-6 bg-cover bg-no-repeat">
+          <div className=" md:mt-20 border-[#305B43] border-2 rounded-xl w-fit h-fit flex items-center justify-center px-6 bg-cover bg-no-repeat">
             <form onSubmit={handleSubmit} className="flex gap-4">
               <input
                 type="email"
@@ -62,7 +62,7 @@ export default function Home() {
         </div>
 
         <div className="md:flex-1 md:h-full md:items-center mt-24 md:mt-0 flex md:justify-start justify-center items-end">
-          <img src="/heroimg.png" className="md:h-[50vh] md:w-[50vh] h-[60vw] object-contain" />
+          <img src="/heroimg.png" className="md:h-[80vh] md:ml-6 md:w-[80vh] h-[60vw] object-contain" />
         </div>
         <div>
           <img src="" />
