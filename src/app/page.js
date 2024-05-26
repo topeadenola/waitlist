@@ -7,25 +7,60 @@ export default function Home() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState(null);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus("loading");
 
-    const res = await fetch("/api/join-waitlist", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email }),
-    });
+  const [popupVisible, setPopupVisible] = useState(false);
+  const [popupMessage, setPopupMessage] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
 
-    const data = await res.json();
-    if (res.ok) {
-      setStatus("success");
-    } else {
-      setStatus(`error: ${data.error}`);
+
+
+
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setStatus("loading...")
+
+    try {
+        // Mock API call
+        const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+        const response = await fetch(`${baseUrl}/v1/users/wait-list`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email
+            }),
+        });
+
+        const result = await response.json();
+
+
+        if (response.ok) {
+            setIsSuccess(true);
+            setPopupMessage('Form submitted successfully! Thanks for joining us');
+            setStatus("Sent")
+
+        } else {
+          console.log("ress", result.message)
+          setStatus("Try Again")
+            throw new Error(`Form submission failed: ${result.message}`);
+
+        }
+    } catch (error) {
+        setIsSuccess(false);
+        setPopupMessage(error.message);
+        setStatus("Try Again")
+
+    } finally {
+        setPopupVisible(true);
+        setEmail("")
+        setTimeout(() => {
+            setPopupVisible(false);
+        }, 3000);
     }
-  };
+};
 
   return (
     <div className="bg-[#001C0C] w-screen text-white h-screen md:max-h-screen custom-font">
@@ -49,7 +84,7 @@ export default function Home() {
                 required
                 className="focus:outline-none pr-4 py-2 w-48 md:w-72 text-sm text-white bg-[#001C0C]"
               />
-              <button type="submit" className="border-[#305B43] text-[#D0EA50] border-l-2 px-2 py-2 pl-8">
+              <button type="submit" className="border-[#305B43] text-[#D0EA50] border-l-2 px-2 py-2 pl-8 hover:text-white">
                 Send
               </button>
 
@@ -68,6 +103,52 @@ export default function Home() {
           <img src="" />
         </div>
       </div>
+
+
+
+      {popupVisible && (
+                <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black text-green-950 bg-opacity-50">
+                    <div className="bg-white p-6 rounded-md flex items-center space-x-4 shadow-lg">
+                        <span className="text-lg">{popupMessage}</span>
+                      
+                            {isSuccess ? (
+                            <svg
+                                className="text-green-500"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                width="24"
+                                height="24"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M5 13l4 4L19 7"
+                                />
+                            </svg>
+                        ) : (
+                            <svg
+                                className="text-red-500"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                width="24"
+                                height="24"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M6 18L18 6M6 6l12 12"
+                                />
+                            </svg>
+                        )}
+                    </div>
+                </div>
+            )}
     </div>
   );
 }
