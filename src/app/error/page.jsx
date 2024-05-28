@@ -1,12 +1,10 @@
 "use client"; 
 import React from 'react'
-import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
 
 const page = () => {
 
-  const router = useRouter();
   const [message, setMessage] = useState('');
 
   useEffect(() => {
