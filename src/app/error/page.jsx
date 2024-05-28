@@ -3,7 +3,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 
 
-const page = () => {
+const Page = () => {
 
   const [message, setMessage] = useState('');
 
@@ -35,4 +35,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
