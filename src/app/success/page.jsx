@@ -1,6 +1,17 @@
+"use client"
 import React from 'react'
+import { useRouter } from 'next/navigation';
 
 const Page = () => {
+
+  const router = useRouter();
+
+  setTimeout(() => {
+    router.push(`/`);
+  }, 5000); // Redirect after 2 seconds
+
+
+
   return (
     <div className='bg-white w-full h-screen flex justify-center items-center'>
         <div className='flex flex-col gap-8 items-center custom-font'>

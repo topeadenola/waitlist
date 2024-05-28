@@ -1,11 +1,22 @@
 "use client"; 
 import React from 'react'
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 
 const Page = () => {
 
+  const router = useRouter();
+
   const [message, setMessage] = useState('');
+
+
+    setTimeout(() => {
+      router.push(`/`);
+    }, 5000); // Redirect after 2 seconds
+  
+  
+
 
   useEffect(() => {
       const urlParams = new URLSearchParams(window.location.search);
