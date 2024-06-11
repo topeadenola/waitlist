@@ -28,7 +28,7 @@ function Home() {
         // Mock API call
         const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-        const response = await fetch(`${baseUrl}/v1/users/wait-list`, {
+        const response = await fetch(`/api/v1/users/wait-list`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
