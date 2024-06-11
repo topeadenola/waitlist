@@ -26,7 +26,7 @@ const Page = () => {
     <div className='bg-white w-full h-screen flex justify-center items-center'>
         <div className='flex flex-col gap-8 items-center custom-font'>
             <div>
-                <img src='/errors.svg' className='w-40'/>
+                <img src='/errors.svg' className='w-24'/>
             </div>
             <div className=' flex flex-col '>
             <p className='text-[#00230F] text-center text-xl custom-font-bold'>
