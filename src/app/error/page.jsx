@@ -13,7 +13,7 @@ const Page = () => {
 
     setTimeout(() => {
       router.push(`/`);
-    }, 3000); // Redirect after 2 seconds
+    }, 5000); // Redirect after 2 seconds
   
   
 
