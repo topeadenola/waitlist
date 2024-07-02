@@ -15,44 +15,48 @@ const handler = async (req, res) => {
   });
 
   try {
+    console.log('Connecting to MongoDB...');
     await client.connect();
+    console.log('Connected to MongoDB');
     const database = client.db('mydatabase');
     const collection = database.collection('waitlist');
 
     const { email } = req.body;
+    console.log('Request body:', req.body);
 
     if (!email) {
+      console.error('No email provided');
       return res.status(400).json({ message: 'Email is required' });
     }
 
-    // Save the email to the database
+    console.log('Saving email to the database...');
     await collection.insertOne({ email, timestamp: new Date() });
+    console.log('Email saved to the database');
 
-    // Define the email content and template data
-    const msg = {
-      to: email,
-      from: 'ubreedlearn@gmail.com',
-      templateId: 'd-0088a80ef1a34b58b5e578d303633911',
-      dynamic_template_data: {
-        // Populate dynamic data as required
-      },
-    };
+    // Define the email content
+    // const msg = {
+    //   to: email,
+    //   from: 'tope.adenola@gmail.com', // Change to your verified sender
+    //   subject: 'Welcome to the Waitlist',
+    //   text: 'Thank you for joining our waitlist.',
+    //   html: '<strong>Thank you for joining our waitlist.</strong>',
+    // };
 
-    // Send the email
-    await sgMail.send(msg);
+    // console.log('Sending email with SendGrid...');
+    // await sgMail.send(msg);
+    // console.log('Email sent successfully');
 
-    res.status(201).json({ message: 'You have been added to the waitlist and an email has been sent.' });
+   // res.status(201).json({ message: 'You have been added to the waitlist and an email has been sent.' });
   } catch (error) {
-    console.error('Error connecting to the database or sending email:', error);
-    res.status(500).json({ message: 'Internal server error', error });
+    console.error('Error occurred:', error.message);
+    if (error.response) {
+      console.error('SendGrid response error:', error.response.body);
+    }
+    res.status(500).json({ message: 'Internal server error', error: error.message });
   } finally {
     await client.close();
+    console.log('MongoDB connection closed');
   }
 };
 
 export default handler;
-
-
-
-
-
