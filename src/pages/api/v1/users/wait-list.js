@@ -46,7 +46,9 @@ const handler = async (req, res) => {
     // await sgMail.send(msg);
     // console.log('Email sent successfully');
 
-   // res.status(201).json({ message: 'You have been added to the waitlist and an email has been sent.' });
+
+    //and an email has been sent.
+    res.status(201).json({ message: 'You have been added to the waitlist ' });
   } catch (error) {
     console.error('Error occurred:', error.message);
     if (error.response) {
