@@ -14,6 +14,14 @@ function Home() {
   const [popupVisible, setPopupVisible] = useState(false);
  
   const router = useRouter();
+
+  const handleFormPop = () => {
+    setPopupVisible(true);
+  };
+
+  const handleClosePopup = () => {
+    setPopupVisible(false);
+  };
   
 
 
@@ -112,6 +120,87 @@ function Home() {
         </div>
       </div>
 
+
+
+      <section className="py-20 bg-white gap-10 flex  justify-center items-center text-black">
+
+        <div className="flex-1 flex flex-col gap-10">
+        <div>
+          <div className="flex flex-col items-center justify-center">
+            <p className="custom-font-bold text-2xl">MARKETING</p>
+            <p>Hybrid / Remote</p>
+          </div>
+        </div>
+
+        <div>
+          <div className="flex flex-col items-center justify-center">
+            <p className="custom-font-bold text-2xl">FRONT END DEVELOPER</p>
+            <p>Hybrid / Remote</p>
+          </div>
+        </div>
+
+        <div>
+          <div className="flex flex-col items-center justify-center">
+            <p className="custom-font-bold text-2xl">BACK END DEVELOPER</p>
+            <p>Hybrid / Remote</p>
+          </div>
+        </div>
+
+        <div>
+          <div className="flex flex-col items-center justify-center">
+            <p className="custom-font-bold text-2xl">DATA ANALYST </p>
+            <p>Hybrid / Remote</p>
+          </div>
+        </div>
+        <div>
+          <div className="flex flex-col items-center justify-center">
+            <p className="custom-font-bold text-2xl">COURSE CURATOR</p>
+            <p>Hybrid / Remote</p>
+          </div>
+        </div>
+        </div>
+      
+        <div className="flex-1 flex flex-col gap-40">
+
+
+        <div>
+          <div className="flex flex-col items-center justify-center">
+            <p className="custom-font-bold text-2xl">Growth Manager</p>
+            <p>Hybrid</p>
+          </div>
+        </div>
+
+     
+        <div>
+          <div className="flex flex-col items-center justify-center" >
+            <p onClick={handleFormPop}  className="underline cursor-pointer text-[#305B43]">Apply here!</p>
+          </div>
+        </div>
+        </div>
+      
+      </section>
+
+
+
+      {/* Modal Popup for Google Form */}
+      {popupVisible && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg w-full max-w-2xl">
+            <button className="text-black float-right" onClick={handleClosePopup}>Close</button>
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLScZdRnqx--yDWVftzJGPYC9oANZmOz0meukKuLPQj7LWy1xQQ/viewform?embedded=true"
+              width="100%"
+              height="500"
+              frameBorder="0"
+              marginHeight="0"
+              marginWidth="0"
+              title="Google Form"
+            >
+              Loading…
+            </iframe>
+          </div>
+        </div>
+      )}
 
 
   
