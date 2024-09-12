@@ -63,7 +63,7 @@ const Footer = () => {
                   <a target="_blank" href="https://x.com/upbreedlearn">
                     <img
                       className=" h-6 object-contain hover:opacity-[0.3]"
-                      src="assets/Twitter.png"
+                      src="assets/x.png"
                     />
                   </a>
                   <a

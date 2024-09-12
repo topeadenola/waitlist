@@ -124,8 +124,8 @@ function Home() {
       </div>
 
       <div className="h-screen flex flex-col">
-        <section className="py-20 px-12 flex-col md:flex-row h-full  bg-white gap-10 flex  justify-center items-center text-black">
-          <div className="flex-1 flex flex-col gap-10">
+        <section className="py-20 md:gap-52 px-12 flex-col md:flex-row h-full bg-white gap-10 flex  justify-center items-center text-black">
+          <div className=" flex flex-col gap-10">
             <div>
               <div className="flex text-center flex-col items-center justify-center">
                 <p className="custom-font-bold text-2xl">
@@ -152,12 +152,12 @@ function Home() {
             <div>
               <div className="flex flex-col items-center justify-center">
                 <p className="custom-font-bold text-2xl">GRAPHICS DESIGNERS </p>
-                <p>Hybrid</p>
+                <p>Remote</p>
               </div>
             </div>
           </div>
 
-          <div className="flex-1 flex flex-col gap-40">
+          <div className=" flex flex-col gap-40">
             <div>
               <div className="flex flex-col items-center justify-center">
                 <p className="custom-font-bold text-2xl">Growth Manager</p>
