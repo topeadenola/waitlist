@@ -88,7 +88,7 @@ function Home() {
   return (
     <div className="bg-[#001C0C] w-screen text-white h-screen md:max-h-screen custom-font">
       <div className="relative flex overflow-auto flex-col-reverse md:flex-row gap-8 md:items-center md:justify-center h-full">
-        <div className="flex-1 text-center md:text-right flex-col gap-4 flex md:items-end justify-start items-center md:justify-start">
+        <div className="flex-1 text-center md:text-right flex-col gap-2 md:gap-4 flex md:items-end justify-start items-center md:justify-start">
           <img src="/logo.png" className="md:h-10 h-7" />
 
           <p className="text-4xl font-light">Join the Waitlist</p>
@@ -97,7 +97,7 @@ function Home() {
             Join us on this exciting journey as we revolutionize education and
             nurture imaginations across Africa and the rest of the world.
           </p>
-          <div className=" mt-20 border-[#305B43] border-2 rounded-xl w-fit h-fit flex items-center justify-center px-6 bg-cover bg-no-repeat">
+          <div className=" mt-8 md:mt-20 border-[#305B43] border-2 rounded-xl w-fit h-fit flex items-center justify-center px-6 bg-cover bg-no-repeat">
             <form onSubmit={handleSubmit} className="flex gap-4">
               <input
                 type="email"
