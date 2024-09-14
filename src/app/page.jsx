@@ -21,6 +21,13 @@ function Home() {
     setPopupVisible(false);
   };
 
+  const scrollToJobs = () => {
+    const jobsSection = document.querySelector("#jobs");
+    if (jobsSection) {
+      jobsSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
     setStatus("loading...");
@@ -80,7 +87,7 @@ function Home() {
 
   return (
     <div className="bg-[#001C0C] w-screen text-white h-screen md:max-h-screen custom-font">
-      <div className="flex overflow-auto flex-col-reverse md:flex-row gap-8 md:items-center md:justify-center h-full">
+      <div className="relative flex overflow-auto flex-col-reverse md:flex-row gap-8 md:items-center md:justify-center h-full">
         <div className="flex-1 text-center md:text-right flex-col gap-4 flex md:items-end justify-start items-center md:justify-start">
           <img src="/logo.png" className="md:h-10 h-7" />
 
@@ -121,10 +128,32 @@ function Home() {
         <div>
           <img src="" />
         </div>
+
+        <div class="arrow-container animated fadeInDown" onClick={scrollToJobs}>
+          <div class="arrow-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="black"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </div>
+          <div class="arrow-1 animated hinge infinite zoomIn"></div>
+        </div>
+        
+
+      
       </div>
 
       <div className="h-screen flex flex-col">
-        <section className="py-20 md:gap-52 px-12 flex-col md:flex-row h-full bg-white gap-10 flex  justify-center items-center text-black">
+        <section id="jobs" className="py-20 md:gap-52 px-12 flex-col md:flex-row h-full bg-white gap-10 flex  justify-center items-center text-black">
           <div className=" flex flex-col gap-10">
             <div>
               <div className="flex text-center flex-col items-center justify-center">
