@@ -7,15 +7,29 @@ import Footer from "@/components/footer";
 import { toast } from "react-toastify"; // Import Toastify
 import "react-toastify/dist/ReactToastify.css";
 
-
-
 function Home() {
   const [email1, setEmail1] = useState("");
   const [status, setStatus] = useState(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [reason, setReason] = useState('Reach out to our sales Team');
+  const [reason, setReason] = useState("Reach out to our sales Team");
   const [message, setMessage] = useState("");
+
+  const aboutText = `
+  Upbreed Learn is a software-as-a-service (SaaS) platform that aims to revolutionize education across Africa and beyond. We provide an extensive range of online courses, empowering learners with skills and knowledge tailored to their personal and professional growth. Our platform offers an immersive, flexible learning experience through personalized recommendations, adaptive technology, and diverse course offerings.
+  
+  What sets Upbreed Learn apart is our commitment to fostering collaboration and community. Learners can connect with peers, mentors, and industry experts, enhancing their educational journey. We offer access to top African instructors who bring real-world expertise, ensuring that the content is both relevant and inspiring.
+  
+  Whether you're looking to upskill, explore a new hobby, or advance in your career, Upbreed Learn offers flexible, high-quality education at an affordable price. Our subscription-based model provides unlimited access to learning resources across devices, making learning accessible anytime, anywhere.
+  
+  Join us as we create a global learning ecosystem and transform education through technology, empowering individuals to reach their full potential.
+  `;
+
+  const text1 =
+    "Join us at Upbreed Learn, where we are redefining online education by bringing experts and learners together through engaging and high-quality courses. As we continue to expand, we're looking for passionate, creative, and driven individuals to join our dynamic team. Our mission is to provide exceptional learning experiences that inspire and empower our subscribers. Whether it's helping someone discover a new passion, advance their career, or simply learn something new, our goal is to impact lives positively. We are a fast-growing startup with a vision to build a";
+
+  const text2 =
+    " With our headquarters in Lagos, Nigeria, and plans for future offices in key locations around the world, we’re excited about the road ahead. If you're ready to be part of a team that's making a difference in the world of online learning, we’d love to hear from you!";
 
   const [popupVisible, setPopupVisible] = useState(false);
 
@@ -96,17 +110,17 @@ function Home() {
   const handleSubmit2 = async (event) => {
     event.preventDefault();
     setStatus("loading...");
-  
+
     // Basic validation for empty fields
     if (!name || !email || !reason || !message) {
       toast.error("All fields are required!");
       console.log("Try Again");
       return; // Stop the submission if any field is empty
     }
-  
+
     try {
       const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-  
+
       const response = await fetch(`${baseUrl}/v1/users/contact-us`, {
         method: "POST",
         mode: "cors", // Changed to "cors" for cross-origin requests
@@ -120,9 +134,9 @@ function Home() {
           message,
         }),
       });
-  
+
       const result = await response.json();
-  
+
       if (response.ok) {
         setStatus("Sent");
         toast.success("Form submitted successfully!"); // Toastify success message
@@ -214,50 +228,12 @@ function Home() {
           </div>
 
           <div className=" text-black text-justify">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply
-            dummy text of the printing and typesetting industry. Lorem Ipsum has
-            been the industry's standard dummy text ever since the 1500s, when
-            an unknown printer took a galley of type and scrambled it to make a
-            type specimen book. It has survived not only five centuries, but
-            also the leap into electronic typesetting, remaining essentially
-            unchanged. It was popularised in the 1960s with the release of
-            Letraset sheets containing Lorem Ipsum passages, and more recently
-            with desktop publishing software like Aldus PageMaker including
-            versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the
-            printing and typesetting industry. Lorem Ipsum has been the
-            industry's standard dummy text ever since the 1500s, when an unknown
-            printer took a galley of type and scrambled it to make a type
-            specimen book. It has survived not only five centuries, but also the
-            leap into electronic typesetting, remaining essentially unchanged.
-            It was popularised in the 1960s with the release of Letraset sheets
-            containing Lorem Ipsum passages, and more recently with desktop
-            publishing software like Aldus PageMaker including versions of Lorem
-            Ipsum.Lorem Ipsum is simply dummy text of the printing and
-            typesetting industry. Lorem Ipsum has been the industry's standard
-            dummy text ever since the 1500s, when an unknown printer took a
-            galley of type and scrambled it to make a type specimen book. It has
-            survived not only five centuries, but also the leap into electronic
-            typesetting, remaining essentially unchanged. It was popularised in
-            the 1960s with the release of Letraset sheets containing Lorem Ipsum
-            passages, and more recently with desktop publishing software like
-            Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is
-            simply dummy text of the printing and typesetting industry. Lorem
-            Ipsum has been the industry's standard dummy text ever since the
-            1500s, when an unknown printer took a galley of type and scrambled
-            it to make a type specimen book. It has survived not only five
-            centuries, but also the leap into electronic typesetting, remaining
-            essentially unchanged. It was popularised in the 1960s with the
-            release of Letraset sheets containing Lorem Ipsum passages, and more
-            recently with desktop publishing software like Aldus PageMaker
-            including versions of Lorem Ipsum.
+            {aboutText.split("\n").map((line, index) => (
+              <React.Fragment key={index}>
+                {line}
+                <br />
+              </React.Fragment>
+            ))}
           </div>
         </section>
       </div>
@@ -267,23 +243,12 @@ function Home() {
           <div className="text-[#D0EA50] custom-font-bold text-4xl">Career</div>
 
           <p className=" px-2 md:px-0 font-light pt-10 text-justify">
-            Join us at Upbreed Learn, where we are redefining online education
-            by bringing experts and learners together through engaging and
-            high-quality courses. As we continue to expand, we're looking for
-            passionate, creative, and driven individuals to join our dynamic
-            team. Our mission is to provide exceptional learning experiences
-            that inspire and empower our subscribers. Whether it's helping
-            someone discover a new passion, advance their career, or simply
-            learn something new, our goal is to impact lives positively. We are
-            a fast-growing startup with a vision to build a{" "}
+            {" "}
+            {text1}{" "}
             <span className="text-[#D0EA50] text-xl font-medium">
-              global community of learners
+              global community of learners.
             </span>
-            . With our headquarters in Lagos, Nigeria, and plans for future
-            offices in key locations around the world, we’re excited about the
-            road ahead. If you're ready to be part of a team that's making a
-            difference in the world of online learning, we’d love to hear from
-            you!
+            {text2}
           </p>
         </section>
         <section
@@ -348,122 +313,123 @@ function Home() {
         <section className="flex font-semibold flex-col max-w-6xl mx-auto pt-24 md:px-32 px-4 gap-10">
           <div className="text-2xl text-left text-black">Contact Us</div>
 
+          <form
+            onSubmit={handleSubmit2}
+            className="md:mx-24 text-[#777777] text-justify bg-gradient-to-b from-white to-[#BCBCBC1A] py-10 rounded-xl md:px-24 px-2 flex flex-col gap-6"
+          >
+            <div className="flex flex-col w-full md:grid md:grid-cols-5 justify-center gap-6 items-start">
+              <div className="text-[#8D8D8D] font-light text-end">
+                Full Name
+              </div>
+              <div className="md:col-span-4 w-full">
+                <input
+                  type="text"
+                  name="fullName"
+                  value={name} // Binding the name state
+                  onChange={(e) => setName(e.target.value)} // Updating name on change
+                  className="w-full rounded-lg bg-[#73737327] py-2 px-4"
+                />
+              </div>
+            </div>
 
+            <div className="flex flex-col w-full md:grid md:grid-cols-5 justify-center gap-6 items-start">
+              <div className="text-[#8D8D8D] font-light text-end">Email</div>
+              <div className="md:col-span-4 w-full">
+                <input
+                  type="email"
+                  name="email"
+                  value={email} // Binding the email state
+                  onChange={(e) => setEmail(e.target.value)} // Updating email on change
+                  className="w-full rounded-lg bg-[#73737327] py-2 px-4"
+                />
+              </div>
+            </div>
 
-          <form onSubmit={handleSubmit2} className="md:mx-24 text-[#777777] text-justify bg-gradient-to-b from-white to-[#BCBCBC1A] py-10 rounded-xl md:px-24 px-2 flex flex-col gap-6">
-  <div className="flex flex-col w-full md:grid md:grid-cols-5 justify-center gap-6 items-start">
-    <div className="text-[#8D8D8D] font-light text-end">Full Name</div>
-    <div className="md:col-span-4 w-full">
-      <input
-        type="text"
-        name="fullName"
-        value={name} // Binding the name state
-        onChange={(e) => setName(e.target.value)} // Updating name on change
-        className="w-full rounded-lg bg-[#73737327] py-2 px-4"
-      />
-    </div>
-  </div>
+            <div className="flex flex-col w-full md:grid md:grid-cols-5 justify-center gap-6 items-start">
+              <div className="text-[#8D8D8D] font-light text-end">Reason</div>
+              <div className="md:col-span-4 w-full">
+                <select
+                  id="reason"
+                  value={reason} // Binding the reason state
+                  onChange={(e) => setReason(e.target.value)} // Updating reason on change
+                  className="bg-[#73737327] p-2 rounded-lg px-4 w-full"
+                >
+                  <option>Reach out to our sales Team</option>
+                  <option>Support Us</option>
+                </select>
+              </div>
+            </div>
 
-  <div className="flex flex-col w-full md:grid md:grid-cols-5 justify-center gap-6 items-start">
-    <div className="text-[#8D8D8D] font-light text-end">Email</div>
-    <div className="md:col-span-4 w-full">
-      <input
-        type="email"
-        name="email"
-        value={email} // Binding the email state
-        onChange={(e) => setEmail(e.target.value)} // Updating email on change
-        className="w-full rounded-lg bg-[#73737327] py-2 px-4"
-      />
-    </div>
-  </div>
+            <div className="flex flex-col w-full md:grid md:grid-cols-5 justify-center gap-6 items-start">
+              <div className="text-[#8D8D8D] font-light text-end">Message</div>
+              <div className="md:col-span-4 w-full">
+                <textarea
+                  name="message"
+                  value={message} // Binding the message state
+                  onChange={(e) => setMessage(e.target.value)} // Updating message on change
+                  className="w-full rounded-lg bg-[#73737327] py-2 px-4 h-40"
+                />
+              </div>
+            </div>
 
-  <div className="flex flex-col w-full md:grid md:grid-cols-5 justify-center gap-6 items-start">
-    <div className="text-[#8D8D8D] font-light text-end">Reason</div>
-    <div className="md:col-span-4 w-full">
-      <select
-        id="reason"
-        value={reason} // Binding the reason state
-        onChange={(e) => setReason(e.target.value)} // Updating reason on change
-        className="bg-[#73737327] p-2 rounded-lg px-4 w-full"
-      >
-        <option>Reach out to our sales Team</option>
-        <option>Support Us</option>
-      </select>
-    </div>
-  </div>
+            <div className="pt-6 flex flex-col w-full md:grid md:grid-cols-5 justify-center gap-6 items-start">
+              <div></div>
+              <div className="w-full col-span-4">
+                <div className="flex px-2 md:px-0 w-full justify-between md:items-start items-center">
+                  <div className="flex gap-4 w-fit ">
+                    <a
+                      target="_blank"
+                      href="https://www.linkedin.com/company/upbreedlearn/about/?viewAsMember=true"
+                    >
+                      <img
+                        className="font-light h-4  object-contain hover:opacity-[0.3]"
+                        src="assets/Linkedin.png"
+                      />
+                    </a>
+                    <a
+                      target="_blank"
+                      href="https://www.instagram.com/upbreedlearn"
+                    >
+                      <img
+                        className=" h-4  object-contain hover:opacity-[0.3]"
+                        src="assets/Instagram.png"
+                      />
+                    </a>
 
-  <div className="flex flex-col w-full md:grid md:grid-cols-5 justify-center gap-6 items-start">
-    <div className="text-[#8D8D8D] font-light text-end">Message</div>
-    <div className="md:col-span-4 w-full">
-      <textarea
-        name="message"
-        value={message} // Binding the message state
-        onChange={(e) => setMessage(e.target.value)} // Updating message on change
-        className="w-full rounded-lg bg-[#73737327] py-2 px-4 h-40"
-      />
-    </div>
-  </div>
+                    <a target="_blank" href="https://x.com/upbreedlearn">
+                      <img
+                        className=" h-4 object-contain hover:opacity-[0.3]"
+                        src="assets/x.png"
+                      />
+                    </a>
+                    <a
+                      target="_blank"
+                      href="https://www.facebook.com/upbreedlearn"
+                    >
+                      <img
+                        className=" h-4 object-contain hover:opacity-[0.3]"
+                        src="assets/Facebook.png"
+                      />
+                    </a>
 
-  <div className="pt-6 flex flex-col w-full md:grid md:grid-cols-5 justify-center gap-6 items-start">
-    <div></div>
-    <div className="w-full col-span-4">
-      <div className="flex px-2 md:px-0 w-full justify-between md:items-start items-center">
-      <div className="flex gap-4 w-fit ">
-                      <a
-                        target="_blank"
-                        href="https://www.linkedin.com/company/upbreedlearn/about/?viewAsMember=true"
-                      >
-                        <img
-                          className="font-light h-4  object-contain hover:opacity-[0.3]"
-                          src="assets/Linkedin.png"
-                        />
-                      </a>
-                      <a
-                        target="_blank"
-                        href="https://www.instagram.com/upbreedlearn"
-                      >
-                        <img
-                          className=" h-4  object-contain hover:opacity-[0.3]"
-                          src="assets/Instagram.png"
-                        />
-                      </a>
+                    <a href="">
+                      <img
+                        className=" h-4 object-contain hover:opacity-[0.3]"
+                        src="assets/Union.png"
+                      />
+                    </a>
+                  </div>
 
-                      <a target="_blank" href="https://x.com/upbreedlearn">
-                        <img
-                          className=" h-4 object-contain hover:opacity-[0.3]"
-                          src="assets/x.png"
-                        />
-                      </a>
-                      <a
-                        target="_blank"
-                        href="https://www.facebook.com/upbreedlearn"
-                      >
-                        <img
-                          className=" h-4 object-contain hover:opacity-[0.3]"
-                          src="assets/Facebook.png"
-                        />
-                      </a>
-
-                      <a href="">
-                        <img
-                          className=" h-4 object-contain hover:opacity-[0.3]"
-                          src="assets/Union.png"
-                        />
-                      </a>
-                    </div>
-
-                    <button
-                      type="submit"
-                      className="px-14 py-2.5 rounded-xl bg-[#00230F] text-[#D0EA50]"                     >
-                      Send
-                    </button>
-      </div>
-    </div>
-  </div>
-</form>
-
-
-        
+                  <button
+                    type="submit"
+                    className="px-14 py-2.5 rounded-xl bg-[#00230F] text-[#D0EA50]"
+                  >
+                    Send
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
         </section>
       </div>
 
