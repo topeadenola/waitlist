@@ -4,10 +4,18 @@ import React from "react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Footer from "@/components/footer";
+import { toast } from "react-toastify"; // Import Toastify
+import "react-toastify/dist/ReactToastify.css";
+
+
 
 function Home() {
-  const [email, setEmail] = useState("");
+  const [email1, setEmail1] = useState("");
   const [status, setStatus] = useState(null);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [reason, setReason] = useState('Reach out to our sales Team');
+  const [message, setMessage] = useState("");
 
   const [popupVisible, setPopupVisible] = useState(false);
 
@@ -27,7 +35,7 @@ function Home() {
       jobsSection.scrollIntoView({ behavior: "smooth" });
     }
   };
-  
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setStatus("loading...");
@@ -42,7 +50,7 @@ function Home() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email,
+          email1,
         }),
       });
 
@@ -81,12 +89,62 @@ function Home() {
 
       setStatus("Try Again");
     } finally {
+      setEmail1("");
+    }
+  };
+
+  const handleSubmit2 = async (event) => {
+    event.preventDefault();
+    setStatus("loading...");
+  
+    // Basic validation for empty fields
+    if (!name || !email || !reason || !message) {
+      toast.error("All fields are required!");
+      console.log("Try Again");
+      return; // Stop the submission if any field is empty
+    }
+  
+    try {
+      const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+  
+      const response = await fetch(`${baseUrl}/v1/users/contact-us`, {
+        method: "POST",
+        mode: "cors", // Changed to "cors" for cross-origin requests
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          reason,
+          message,
+        }),
+      });
+  
+      const result = await response.json();
+  
+      if (response.ok) {
+        setStatus("Sent");
+        toast.success("Form submitted successfully!"); // Toastify success message
+      } else {
+        setStatus("Try Again");
+        toast.error("Form submission failed!"); // Toastify error message
+        throw new Error(`Form submission failed: ${result.message}`);
+      }
+    } catch (error) {
+      setStatus("Try Again");
+      toast.error("An error occurred while submitting the form."); // Error notification with Toastify
+    } finally {
+      // Clear form fields
+      setName("");
       setEmail("");
+      setReason("Reach out to our sales Team");
+      setMessage("");
     }
   };
 
   return (
-    <div className="bg-[#001C0C] w-screen text-white h-screen md:max-h-screen custom-font">
+    <div className="bg-[#001C0C] w-screen overflow-x-hidden text-white h-screen md:max-h-screen custom-font">
       <div className="relative flex overflow-auto flex-col-reverse md:flex-row gap-8 md:items-center md:justify-center h-full">
         <div className="flex-1 text-center md:text-right flex-col gap-2 md:gap-4 flex md:items-end justify-start items-center md:justify-start">
           <img src="/logo.png" className="md:h-10 h-7" />
@@ -101,8 +159,8 @@ function Home() {
             <form onSubmit={handleSubmit} className="flex gap-4">
               <input
                 type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={email1}
+                onChange={(e) => setEmail1(e.target.value)}
                 placeholder="Please insert your email here..."
                 required
                 className="focus:outline-none pr-4 py-2 w-48 md:w-72 text-sm text-white bg-[#001C0C]"
@@ -147,13 +205,91 @@ function Home() {
           </div>
           <div class="arrow-1 animated hinge infinite zoomIn"></div>
         </div>
-        
-
-      
       </div>
 
-      <div className="h-screen flex flex-col">
-        <section id="jobs" className="py-20 md:gap-52 px-12 flex-col md:flex-row h-full bg-white gap-10 flex  justify-center items-center text-black">
+      <div className="bg-white">
+        <section className="flex font-semibold flex-col max-w-6xl mx-auto py-24 pb-32 md:px-32 px-8 gap-10">
+          <div className="text-2xl font-extrabold text-left text-black">
+            Who we are
+          </div>
+
+          <div className=" text-black text-justify">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book. It has survived not
+            only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s
+            with the release of Letraset sheets containing Lorem Ipsum passages,
+            and more recently with desktop publishing software like Aldus
+            PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply
+            dummy text of the printing and typesetting industry. Lorem Ipsum has
+            been the industry's standard dummy text ever since the 1500s, when
+            an unknown printer took a galley of type and scrambled it to make a
+            type specimen book. It has survived not only five centuries, but
+            also the leap into electronic typesetting, remaining essentially
+            unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages, and more recently
+            with desktop publishing software like Aldus PageMaker including
+            versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the
+            printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an unknown
+            printer took a galley of type and scrambled it to make a type
+            specimen book. It has survived not only five centuries, but also the
+            leap into electronic typesetting, remaining essentially unchanged.
+            It was popularised in the 1960s with the release of Letraset sheets
+            containing Lorem Ipsum passages, and more recently with desktop
+            publishing software like Aldus PageMaker including versions of Lorem
+            Ipsum.Lorem Ipsum is simply dummy text of the printing and
+            typesetting industry. Lorem Ipsum has been the industry's standard
+            dummy text ever since the 1500s, when an unknown printer took a
+            galley of type and scrambled it to make a type specimen book. It has
+            survived not only five centuries, but also the leap into electronic
+            typesetting, remaining essentially unchanged. It was popularised in
+            the 1960s with the release of Letraset sheets containing Lorem Ipsum
+            passages, and more recently with desktop publishing software like
+            Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is
+            simply dummy text of the printing and typesetting industry. Lorem
+            Ipsum has been the industry's standard dummy text ever since the
+            1500s, when an unknown printer took a galley of type and scrambled
+            it to make a type specimen book. It has survived not only five
+            centuries, but also the leap into electronic typesetting, remaining
+            essentially unchanged. It was popularised in the 1960s with the
+            release of Letraset sheets containing Lorem Ipsum passages, and more
+            recently with desktop publishing software like Aldus PageMaker
+            including versions of Lorem Ipsum.
+          </div>
+        </section>
+      </div>
+
+      <div className=" bg-[#00230F]   flex flex-col">
+        <section className=" px-4 md:px-0 mx-auto max-w-6xl py-20">
+          <div className="text-[#D0EA50] custom-font-bold text-4xl">Career</div>
+
+          <p className=" px-2 md:px-0 font-light pt-10 text-justify">
+            Join us at Upbreed Learn, where we are redefining online education
+            by bringing experts and learners together through engaging and
+            high-quality courses. As we continue to expand, we're looking for
+            passionate, creative, and driven individuals to join our dynamic
+            team. Our mission is to provide exceptional learning experiences
+            that inspire and empower our subscribers. Whether it's helping
+            someone discover a new passion, advance their career, or simply
+            learn something new, our goal is to impact lives positively. We are
+            a fast-growing startup with a vision to build a{" "}
+            <span className="text-[#D0EA50] text-xl font-medium">
+              global community of learners
+            </span>
+            . With our headquarters in Lagos, Nigeria, and plans for future
+            offices in key locations around the world, we’re excited about the
+            road ahead. If you're ready to be part of a team that's making a
+            difference in the world of online learning, we’d love to hear from
+            you!
+          </p>
+        </section>
+        <section
+          id="jobs"
+          className="py-20 md:gap-52 px-12 flex-col md:flex-row h-full bg-[#F2F2F2] w-full gap-10 flex  justify-center items-center text-black"
+        >
           <div className=" flex flex-col gap-10">
             <div>
               <div className="flex text-center flex-col items-center justify-center">
@@ -206,10 +342,133 @@ function Home() {
             </div>
           </div>
         </section>
+      </div>
 
-        <div>
-          <Footer />
-        </div>
+      <div className="bg-white w-full">
+        <section className="flex font-semibold flex-col max-w-6xl mx-auto pt-24 md:px-32 px-4 gap-10">
+          <div className="text-2xl text-left text-black">Contact Us</div>
+
+
+
+          <form onSubmit={handleSubmit2} className="md:mx-24 text-[#777777] text-justify bg-gradient-to-b from-white to-[#BCBCBC1A] py-10 rounded-xl md:px-24 px-2 flex flex-col gap-6">
+  <div className="flex flex-col w-full md:grid md:grid-cols-5 justify-center gap-6 items-start">
+    <div className="text-[#8D8D8D] font-light text-end">Full Name</div>
+    <div className="md:col-span-4 w-full">
+      <input
+        type="text"
+        name="fullName"
+        value={name} // Binding the name state
+        onChange={(e) => setName(e.target.value)} // Updating name on change
+        className="w-full rounded-lg bg-[#73737327] py-2 px-4"
+      />
+    </div>
+  </div>
+
+  <div className="flex flex-col w-full md:grid md:grid-cols-5 justify-center gap-6 items-start">
+    <div className="text-[#8D8D8D] font-light text-end">Email</div>
+    <div className="md:col-span-4 w-full">
+      <input
+        type="email"
+        name="email"
+        value={email} // Binding the email state
+        onChange={(e) => setEmail(e.target.value)} // Updating email on change
+        className="w-full rounded-lg bg-[#73737327] py-2 px-4"
+      />
+    </div>
+  </div>
+
+  <div className="flex flex-col w-full md:grid md:grid-cols-5 justify-center gap-6 items-start">
+    <div className="text-[#8D8D8D] font-light text-end">Reason</div>
+    <div className="md:col-span-4 w-full">
+      <select
+        id="reason"
+        value={reason} // Binding the reason state
+        onChange={(e) => setReason(e.target.value)} // Updating reason on change
+        className="bg-[#73737327] p-2 rounded-lg px-4 w-full"
+      >
+        <option>Reach out to our sales Team</option>
+        <option>Support Us</option>
+      </select>
+    </div>
+  </div>
+
+  <div className="flex flex-col w-full md:grid md:grid-cols-5 justify-center gap-6 items-start">
+    <div className="text-[#8D8D8D] font-light text-end">Message</div>
+    <div className="md:col-span-4 w-full">
+      <textarea
+        name="message"
+        value={message} // Binding the message state
+        onChange={(e) => setMessage(e.target.value)} // Updating message on change
+        className="w-full rounded-lg bg-[#73737327] py-2 px-4 h-40"
+      />
+    </div>
+  </div>
+
+  <div className="pt-6 flex flex-col w-full md:grid md:grid-cols-5 justify-center gap-6 items-start">
+    <div></div>
+    <div className="w-full col-span-4">
+      <div className="flex px-2 md:px-0 w-full justify-between md:items-start items-center">
+      <div className="flex gap-4 w-fit ">
+                      <a
+                        target="_blank"
+                        href="https://www.linkedin.com/company/upbreedlearn/about/?viewAsMember=true"
+                      >
+                        <img
+                          className="font-light h-4  object-contain hover:opacity-[0.3]"
+                          src="assets/Linkedin.png"
+                        />
+                      </a>
+                      <a
+                        target="_blank"
+                        href="https://www.instagram.com/upbreedlearn"
+                      >
+                        <img
+                          className=" h-4  object-contain hover:opacity-[0.3]"
+                          src="assets/Instagram.png"
+                        />
+                      </a>
+
+                      <a target="_blank" href="https://x.com/upbreedlearn">
+                        <img
+                          className=" h-4 object-contain hover:opacity-[0.3]"
+                          src="assets/x.png"
+                        />
+                      </a>
+                      <a
+                        target="_blank"
+                        href="https://www.facebook.com/upbreedlearn"
+                      >
+                        <img
+                          className=" h-4 object-contain hover:opacity-[0.3]"
+                          src="assets/Facebook.png"
+                        />
+                      </a>
+
+                      <a href="">
+                        <img
+                          className=" h-4 object-contain hover:opacity-[0.3]"
+                          src="assets/Union.png"
+                        />
+                      </a>
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="px-14 py-2.5 rounded-xl bg-[#00230F] text-[#D0EA50]"                     >
+                      Send
+                    </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+        
+        </section>
+      </div>
+
+      <div>
+        <Footer />
       </div>
 
       {/* Modal Popup for Google Form */}
