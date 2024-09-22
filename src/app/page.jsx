@@ -6,24 +6,24 @@ import { useRouter } from "next/navigation";
 import Footer from "@/components/footer";
 import { toast } from "react-toastify"; // Import Toastify
 import "react-toastify/dist/ReactToastify.css";
+import Navbar from "@/components/navbar";
 
 function Home() {
   const [email1, setEmail1] = useState("");
   const [status, setStatus] = useState(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [reason, setReason] = useState("Reach out to our sales Team");
+  const [reason, setReason] = useState("");
   const [message, setMessage] = useState("");
 
   const aboutText = `
-  Upbreed Learn is a software-as-a-service (SaaS) platform that aims to revolutionize education across Africa and beyond. We provide an extensive range of online courses, empowering learners with skills and knowledge tailored to their personal and professional growth. Our platform offers an immersive, flexible learning experience through personalized recommendations, adaptive technology, and diverse course offerings.
-  
-  What sets Upbreed Learn apart is our commitment to fostering collaboration and community. Learners can connect with peers, mentors, and industry experts, enhancing their educational journey. We offer access to top African instructors who bring real-world expertise, ensuring that the content is both relevant and inspiring.
-  
-  Whether you're looking to upskill, explore a new hobby, or advance in your career, Upbreed Learn offers flexible, high-quality education at an affordable price. Our subscription-based model provides unlimited access to learning resources across devices, making learning accessible anytime, anywhere.
-  
-  Join us as we create a global learning ecosystem and transform education through technology, empowering individuals to reach their full potential.
-  `;
+  Upbreed Learn is an online learning platform that aims to revolutionize education across Africa and beyond. We provide an extensive range of online courses, empowering learners with skills and knowledge tailored to their personal and professional growth. Our platform offers an immersive, flexible learning experience through personalized recommendations, adaptive technology, and diverse course offerings.
+
+What sets Upbreed Learn apart is our commitment to fostering collaboration and community. Learners can connect with peers, mentors, and industry experts, enhancing their educational journey. We offer access to top African instructors who bring real-world expertise, ensuring that the content is both relevant and inspiring.
+
+Whether you're looking to upskill, explore a new hobby, or advance in your career, Upbreed Learn offers flexible, high-quality education at an affordable price. Our subscription-based model provides unlimited access to learning resources across devices, making learning accessible anytime, anywhere.
+
+Join us as we create a global learning ecosystem and transform education through technology, empowering individuals to reach their full potential.`;
 
   const text1 =
     "Join us at Upbreed Learn, where we are redefining online education by bringing experts and learners together through engaging and high-quality courses. As we continue to expand, we're looking for passionate, creative, and driven individuals to join our dynamic team. Our mission is to provide exceptional learning experiences that inspire and empower our subscribers. Whether it's helping someone discover a new passion, advance their career, or simply learn something new, our goal is to impact lives positively. We are a fast-growing startup with a vision to build a";
@@ -45,6 +45,24 @@ function Home() {
 
   const scrollToJobs = () => {
     const jobsSection = document.querySelector("#jobs");
+    if (jobsSection) {
+      jobsSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  const scrollToAbout = () => {
+    const jobsSection = document.querySelector("#about");
+    if (jobsSection) {
+      jobsSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  const scrollToCareer = () => {
+    const jobsSection = document.querySelector("#career");
+    if (jobsSection) {
+      jobsSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  const scrollToContact = () => {
+    const jobsSection = document.querySelector("#contact");
     if (jobsSection) {
       jobsSection.scrollIntoView({ behavior: "smooth" });
     }
@@ -123,7 +141,7 @@ function Home() {
 
       const response = await fetch(`${baseUrl}/v1/users/contact-us`, {
         method: "POST",
-        mode: "cors", // Changed to "cors" for cross-origin requests
+        mode: "no-cors", // Changed to "cors" for cross-origin requests
         headers: {
           "Content-Type": "application/json",
         },
@@ -152,14 +170,20 @@ function Home() {
       // Clear form fields
       setName("");
       setEmail("");
-      setReason("Reach out to our sales Team");
+      setReason("");
       setMessage("");
     }
   };
 
   return (
-    <div className="bg-[#001C0C] w-screen overflow-x-hidden text-white h-screen md:max-h-screen custom-font">
-      <div className="relative flex overflow-auto flex-col-reverse md:flex-row gap-8 md:items-center md:justify-center h-full">
+    <div className=" w-screen overflow-x-hidden text-white h-screen md:max-h-screen custom-font">
+
+      <div className="absolute w-full top-0 h-fit z-[1000]">
+      <Navbar scrollToAbout={scrollToAbout} scrollToCareer={scrollToCareer} scrollToContact={scrollToContact} />
+ 
+      </div>
+
+      <div className="bg-[#001C0C] relative flex overflow-auto flex-col-reverse md:flex-row gap-8 md:items-center md:justify-center h-full">
         <div className="flex-1 text-center md:text-right flex-col gap-2 md:gap-4 flex md:items-end justify-start items-center md:justify-start">
           <img src="/logo.png" className="md:h-10 h-7" />
 
@@ -221,13 +245,13 @@ function Home() {
         </div>
       </div>
 
-      <div className="bg-white">
+      <div className="bg-white" id="about">
         <section className="flex font-semibold flex-col max-w-6xl mx-auto py-24 pb-32 md:px-32 px-8 gap-10">
           <div className="text-2xl font-extrabold text-left text-black">
             Who we are
           </div>
 
-          <div className=" text-black text-justify">
+          <div className=" text-black font-light text-justify">
             {aboutText.split("\n").map((line, index) => (
               <React.Fragment key={index}>
                 {line}
@@ -238,7 +262,7 @@ function Home() {
         </section>
       </div>
 
-      <div className=" bg-[#00230F]   flex flex-col">
+      <div className=" bg-[#305B43]   flex flex-col" id="career">
         <section className=" px-4 md:px-0 mx-auto max-w-6xl py-20">
           <div className="text-[#D0EA50] custom-font-bold text-4xl">Career</div>
 
@@ -309,72 +333,72 @@ function Home() {
         </section>
       </div>
 
-      <div className="bg-white w-full">
-        <section className="flex font-semibold flex-col max-w-6xl mx-auto pt-24 md:px-32 px-4 gap-10">
-          <div className="text-2xl text-left text-black">Contact Us</div>
+      <div className="bg-white w-full" id="contact">
+        <section className="flex font-semibold flex-col max-w-6xl mx-auto pt-24 md:px-32 px-4  gap-10">
+          <div className="text-2xl text-left text-[#737373]">Contact Us</div>
 
           <form
             onSubmit={handleSubmit2}
-            className="md:mx-24 text-[#777777] text-justify bg-gradient-to-b from-white to-[#BCBCBC1A] py-10 rounded-xl md:px-24 px-2 flex flex-col gap-6"
+            className="md:mx-14 text-[#777777] text-justify bg-gradient-to-b from-white to-[#f5f5f5] py-10 rounded-xl md:px-24 px-2 flex flex-col gap-10"
           >
-            <div className="flex flex-col w-full md:grid md:grid-cols-5 justify-center gap-6 items-start">
-              <div className="text-[#8D8D8D] font-light text-end">
-                Full Name
-              </div>
-              <div className="md:col-span-4 w-full">
+            <div className="flex flex-col w-full md:grid md:grid-cols-5 justify-center md:gap-6 gap-2 items-start">
+              
+              <div className="md:col-span-5 w-full">
                 <input
                   type="text"
                   name="fullName"
+                  placeholder={"Name"}
+
                   value={name} // Binding the name state
                   onChange={(e) => setName(e.target.value)} // Updating name on change
-                  className="w-full rounded-lg bg-[#73737327] py-2 px-4"
+                  className="w-full rounded-lg bg-[#f5f5f5] placeholder:text-[#D2D2D2] py-4 font-light px-4"
                 />
               </div>
             </div>
 
-            <div className="flex flex-col w-full md:grid md:grid-cols-5 justify-center gap-6 items-start">
-              <div className="text-[#8D8D8D] font-light text-end">Email</div>
-              <div className="md:col-span-4 w-full">
+            <div className="flex flex-col w-full md:grid md:grid-cols-5 justify-center md:gap-6 gap-2 items-start">
+              <div className="md:col-span-5 w-full">
                 <input
                   type="email"
                   name="email"
+                  placeholder={"Email"}
                   value={email} // Binding the email state
                   onChange={(e) => setEmail(e.target.value)} // Updating email on change
-                  className="w-full rounded-lg bg-[#73737327] py-2 px-4"
+                  className="w-full rounded-lg bg-[#f5f5f5] placeholder:text-[#D2D2D2] py-4 font-light px-4"
                 />
               </div>
             </div>
 
-            <div className="flex flex-col w-full md:grid md:grid-cols-5 justify-center gap-6 items-start">
-              <div className="text-[#8D8D8D] font-light text-end">Reason</div>
-              <div className="md:col-span-4 w-full">
-                <select
-                  id="reason"
-                  value={reason} // Binding the reason state
-                  onChange={(e) => setReason(e.target.value)} // Updating reason on change
-                  className="bg-[#73737327] p-2 rounded-lg px-4 w-full"
-                >
-                  <option>Reach out to our sales Team</option>
-                  <option>Support Us</option>
-                </select>
+            <div className="flex flex-col w-full md:grid md:grid-cols-5 justify-center md:gap-6 gap-2 items-start">
+              <div className="md:col-span-5 w-full">
+              <input
+                  type="text"
+                  name="reason"
+                  placeholder={"Reason"}
+
+                  value={reason} // Binding the email state
+                  onChange={(e) => setReason(e.target.value)} // Updating email on change
+                  className="w-full rounded-lg bg-[#f5f5f5] placeholder:text-[#D2D2D2] py-4 font-light px-4"
+                />
               </div>
             </div>
 
-            <div className="flex flex-col w-full md:grid md:grid-cols-5 justify-center gap-6 items-start">
-              <div className="text-[#8D8D8D] font-light text-end">Message</div>
-              <div className="md:col-span-4 w-full">
+            <div className="flex flex-col w-full md:grid md:grid-cols-5 justify-center md:gap-6 gap-2 items-start">
+              <div className="md:col-span-5 w-full">
                 <textarea
                   name="message"
+                  placeholder={"Message"}
+
                   value={message} // Binding the message state
                   onChange={(e) => setMessage(e.target.value)} // Updating message on change
-                  className="w-full rounded-lg bg-[#73737327] py-2 px-4 h-40"
+                  className="w-full rounded-lg bg-[#f5f5f5] placeholder:text-[#D2D2D2] py-4 font-light px-4 h-40"
                 />
               </div>
             </div>
 
             <div className="pt-6 flex flex-col w-full md:grid md:grid-cols-5 justify-center gap-6 items-start">
               <div></div>
-              <div className="w-full col-span-4">
+              <div className="w-full col-span-5">
                 <div className="flex px-2 md:px-0 w-full justify-between md:items-start items-center">
                   <div className="flex gap-4 w-fit ">
                     <a
@@ -382,7 +406,7 @@ function Home() {
                       href="https://www.linkedin.com/company/upbreedlearn/about/?viewAsMember=true"
                     >
                       <img
-                        className="font-light h-4  object-contain hover:opacity-[0.3]"
+                        className="font-light h-6  object-contain hover:opacity-[0.3]"
                         src="assets/Linkedin.png"
                       />
                     </a>
@@ -391,14 +415,14 @@ function Home() {
                       href="https://www.instagram.com/upbreedlearn"
                     >
                       <img
-                        className=" h-4  object-contain hover:opacity-[0.3]"
+                        className=" h-6  object-contain hover:opacity-[0.3]"
                         src="assets/Instagram.png"
                       />
                     </a>
 
                     <a target="_blank" href="https://x.com/upbreedlearn">
                       <img
-                        className=" h-4 object-contain hover:opacity-[0.3]"
+                        className=" h-6 object-contain hover:opacity-[0.3]"
                         src="assets/x.png"
                       />
                     </a>
@@ -407,22 +431,22 @@ function Home() {
                       href="https://www.facebook.com/upbreedlearn"
                     >
                       <img
-                        className=" h-4 object-contain hover:opacity-[0.3]"
+                        className=" h-6 object-contain hover:opacity-[0.3]"
                         src="assets/Facebook.png"
                       />
                     </a>
 
                     <a href="">
                       <img
-                        className=" h-4 object-contain hover:opacity-[0.3]"
-                        src="assets/Union.png"
+                        className=" h-6 object-contain hover:opacity-[0.3]"
+                        src="assets/youtube.png"
                       />
                     </a>
                   </div>
 
                   <button
                     type="submit"
-                    className="px-14 py-2.5 rounded-xl bg-[#00230F] text-[#D0EA50]"
+                    className="px-14 py-3.5 rounded-xl bg-[#00230F] text-[#D0EA50]"
                   >
                     Send
                   </button>
@@ -433,7 +457,7 @@ function Home() {
         </section>
       </div>
 
-      <div>
+      <div className="pt-6 bg-white">
         <Footer />
       </div>
 
