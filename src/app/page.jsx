@@ -334,12 +334,12 @@ Join us as we create a global learning ecosystem and transform education through
       </div>
 
       <div className="bg-white w-full" id="contact">
-        <section className="flex font-semibold flex-col max-w-6xl mx-auto pt-24 md:px-32 px-4  gap-10">
+        <section className="flex font-semibold flex-col max-w-6xl mx-auto pt-16 md:px-32 px-4  gap-6">
           <div className="text-2xl text-left text-[#737373]">Contact Us</div>
 
           <form
             onSubmit={handleSubmit2}
-            className="md:mx-14 text-[#777777] text-justify bg-gradient-to-b from-white to-[#f5f5f5] py-10 rounded-xl md:px-24 px-2 flex flex-col gap-10"
+            className="md:mx-14 text-[#777777] text-justify bg-gradient-to-b from-white to-[#f5f5f5] py-6 rounded-xl md:px-24 px-2 flex flex-col gap-6"
           >
             <div className="flex flex-col w-full md:grid md:grid-cols-5 justify-center md:gap-6 gap-2 items-start">
               
@@ -396,10 +396,10 @@ Join us as we create a global learning ecosystem and transform education through
               </div>
             </div>
 
-            <div className="pt-6 flex flex-col w-full md:grid md:grid-cols-5 justify-center gap-6 items-start">
+            <div className="pt-2 flex flex-col w-full md:grid md:grid-cols-5 justify-center gap-6 items-start">
               <div></div>
               <div className="w-full col-span-5">
-                <div className="flex px-2 md:px-0 w-full justify-between md:items-start items-center">
+                <div className="flex flex-col-reverse gap-4 md:gap-0 md:flex-row px-2 md:px-0 w-full justify-between md:items-start items-center">
                   <div className="flex gap-4 w-fit ">
                     <a
                       target="_blank"
@@ -446,7 +446,7 @@ Join us as we create a global learning ecosystem and transform education through
 
                   <button
                     type="submit"
-                    className="px-14 py-3.5 rounded-xl bg-[#00230F] text-[#D0EA50]"
+                    className="px-14 py-3.5 rounded-xl w-full md:w-fit bg-[#00230F] text-[#D0EA50]"
                   >
                     Send
                   </button>
