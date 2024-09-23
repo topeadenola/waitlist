@@ -339,7 +339,7 @@ Join us as we create a global learning ecosystem and transform education through
 
           <form
             onSubmit={handleSubmit2}
-            className="md:mx-14 text-[#777777] text-justify bg-gradient-to-b from-white to-[#f5f5f5] py-6 rounded md:px-24 px-2 flex flex-col gap-6"
+            className="md:mx-14 scale-[.9] text-[#777777] text-justify bg-gradient-to-b from-white to-[#f5f5f5] py-6 rounded-lg md:px-24 px-2 flex flex-col gap-6"
           >
             <div className="flex flex-col w-full md:grid md:grid-cols-5 justify-center md:gap-6 gap-2 items-start">
               
