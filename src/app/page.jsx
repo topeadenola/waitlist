@@ -339,7 +339,7 @@ Join us as we create a global learning ecosystem and transform education through
 
           <form
             onSubmit={handleSubmit2}
-            className="md:mx-14 text-[#777777] text-justify bg-gradient-to-b from-white to-[#f5f5f5] py-6 rounded-xl md:px-24 px-2 flex flex-col gap-6"
+            className="md:mx-14 text-[#777777] text-justify bg-gradient-to-b from-white to-[#f5f5f5] py-6 rounded md:px-24 px-2 flex flex-col gap-6"
           >
             <div className="flex flex-col w-full md:grid md:grid-cols-5 justify-center md:gap-6 gap-2 items-start">
               
@@ -396,11 +396,10 @@ Join us as we create a global learning ecosystem and transform education through
               </div>
             </div>
 
-            <div className="pt-2 flex flex-col w-full md:grid md:grid-cols-5 justify-center gap-6 items-start">
-              <div></div>
+            <div className="md:pt-2 -mt-6 md:mt-0 flex flex-col w-full md:grid md:grid-cols-5 justify-center gap-6 items-start">
               <div className="w-full col-span-5">
-                <div className="flex flex-col-reverse gap-4 md:gap-0 md:flex-row px-2 md:px-0 w-full justify-between md:items-start items-center">
-                  <div className="flex gap-4 w-fit ">
+                <div className="flex flex-col-reverse gap-10 md:gap-0 md:flex-row px-2 md:px-0 w-full justify-between md:items-start items-center">
+                  <div className="hidden md:flex gap-4 w-fit ">
                     <a
                       target="_blank"
                       href="https://www.linkedin.com/company/upbreedlearn/about/?viewAsMember=true"
@@ -454,10 +453,14 @@ Join us as we create a global learning ecosystem and transform education through
               </div>
             </div>
           </form>
+
+         
+
+       
         </section>
       </div>
 
-      <div className="pt-6 bg-white">
+      <div className="md:pt-6 bg-white">
         <Footer />
       </div>
 

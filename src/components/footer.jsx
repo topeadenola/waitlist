@@ -27,10 +27,58 @@ const Footer = () => {
 
   return (
     <div className="bg-white w-full text-white custom-font font-light py-10 pb-8 border-none text-sm">
+       <div className="flex md:hidden justify-center">
+          <div className="flex  gap-4 w-fit ">
+                    <a
+                      target="_blank"
+                      href="https://www.linkedin.com/company/upbreedlearn/about/?viewAsMember=true"
+                    >
+                      <img
+                        className="font-light h-6  object-contain hover:opacity-[0.3]"
+                        src="assets/Linkedin.png"
+                      />
+                    </a>
+                    <a
+                      target="_blank"
+                      href="https://www.instagram.com/upbreedlearn"
+                    >
+                      <img
+                        className=" h-6  object-contain hover:opacity-[0.3]"
+                        src="assets/Instagram.png"
+                      />
+                    </a>
+
+                    <a target="_blank" href="https://x.com/upbreedlearn">
+                      <img
+                        className=" h-6 object-contain hover:opacity-[0.3]"
+                        src="assets/x.png"
+                      />
+                    </a>
+                    <a
+                      target="_blank"
+                      href="https://www.facebook.com/upbreedlearn"
+                    >
+                      <img
+                        className=" h-6 object-contain hover:opacity-[0.3]"
+                        src="assets/Facebook.png"
+                      />
+                    </a>
+
+                    <a href="">
+                      <img
+                        className=" h-6 object-contain hover:opacity-[0.3]"
+                        src="assets/youtube.png"
+                      />
+                    </a>
+                  </div>
+          </div>
+
       <div className=" ">
+
+        
         <div className=" max-w-6xl mx-auto flex flex-col justify-around gap-6 md:gap-0 md:flex-row md:justify-center md:items-end  pb-4 mb-4 md:pb-2 ">
           <div className="flex-1 gap-6 md:gap-32 flex flex-col px-4 md:flex-row justify-start min-h-[100%] items-start ">
-            <div className="  min-h-[100%] mt-auto flex flex-col  items-start justify-end">
+            <div className="min-h-[100%] md:mt-auto mt-6 flex w-full flex-col md:items-start md:justify-end justify-center items-center">
               <a href="/">
                 <img
                   src="/assets/logo3.png"
@@ -45,6 +93,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
+
         <div className="border-[#4747471A] border-b-2 w-full">
 
         </div>
