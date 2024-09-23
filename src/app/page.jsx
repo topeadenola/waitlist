@@ -15,6 +15,7 @@ function Home() {
   const [email, setEmail] = useState("");
   const [reason, setReason] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState("Send");
 
   const aboutText = `
   Upbreed Learn is an online learning platform that aims to revolutionize education across Africa and beyond. We provide an extensive range of online courses, empowering learners with skills and knowledge tailored to their personal and professional growth. Our platform offers an immersive, flexible learning experience through personalized recommendations, adaptive technology, and diverse course offerings.
@@ -126,6 +127,7 @@ Join us as we create a global learning ecosystem and transform education through
   };
 
   const handleSubmit2 = async (event) => {
+    setLoading("sending")
     event.preventDefault();
     setStatus("loading...");
 
@@ -138,10 +140,15 @@ Join us as we create a global learning ecosystem and transform education through
 
     try {
       const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+      console.log("test", {
+        name,
+        email,
+        reason,
+        message,
+      })
 
       const response = await fetch(`${baseUrl}/v1/users/contact-us`, {
         method: "POST",
-        mode: "no-cors", // Changed to "cors" for cross-origin requests
         headers: {
           "Content-Type": "application/json",
         },
@@ -172,6 +179,7 @@ Join us as we create a global learning ecosystem and transform education through
       setEmail("");
       setReason("");
       setMessage("");
+      setLoading("Send")
     }
   };
 
@@ -447,7 +455,7 @@ Join us as we create a global learning ecosystem and transform education through
                     type="submit"
                     className="px-14 py-3.5 rounded-xl w-full md:w-fit bg-[#00230F] text-[#D0EA50]"
                   >
-                    Send
+                    {loading}
                   </button>
                 </div>
               </div>
