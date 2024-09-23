@@ -139,7 +139,7 @@ Join us as we create a global learning ecosystem and transform education through
     }
 
     try {
-      const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+      const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL2;
       console.log("test", {
         name,
         email,
