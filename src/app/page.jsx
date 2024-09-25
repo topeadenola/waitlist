@@ -34,10 +34,37 @@ Join us as we create a global learning ecosystem and transform education through
 
   const [popupVisible, setPopupVisible] = useState(false);
 
+  
+
   const router = useRouter();
 
+
+  const isiOSDevice = () => {
+    const iOSRegex = /iPad|iPhone|iPod/;
+    return iOSRegex.test(navigator.userAgent) && !window.MSStream;
+  };
+
+  const openInNewTab = (url) => {
+
+    window.open(url, '_blank', 'noopener,noreferrer');
+  
+  };
+
+
   const handleFormPop = () => {
-    setPopupVisible(true);
+
+
+    if(isiOSDevice()){
+
+      openInNewTab("https://docs.google.com/forms/d/e/1FAIpQLScZdRnqx--yDWVftzJGPYC9oANZmOz0meukKuLPQj7LWy1xQQ/viewform?usp=sf_link")
+
+    }else{
+      setPopupVisible(true);
+
+    }
+
+    
+
   };
 
   const handleClosePopup = () => {
