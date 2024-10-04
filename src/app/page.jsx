@@ -102,19 +102,22 @@ Join us as we create a global learning ecosystem and transform education through
 
     try {
       // Mock API call
-      const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+      const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL2;
 
-      const response = await fetch(`/api/v1/users/wait-list`, {
+      const response = await fetch(`${baseUrl}/v1/users/wait-list`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email1,
+          email: email1,
         }),
       });
 
       const result = await response.json();
+
+      console.log("ress", result.message);
+
 
       if (response.ok) {
         setStatus("Sent");
